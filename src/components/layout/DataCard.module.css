@@ -1,0 +1,26 @@
+.card_wrapper {
+  width: 120px;
+  text-align: center;
+  margin: 15px 0 0 23px;
+  background-color: #333a49;
+  border-radius: 15px;
+}
+
+.card_wrapper p {
+  color: #ffffff;
+  text-align: left;
+  font-size: 1em;
+  padding: 5px 5px 5px 8px;
+}
+
+.card_wrapper i {
+  font-size: 3em;
+  width: 100px;
+  margin-top: 5px;
+}
+
+.card_wrapper figcaption {
+  color: #ffffff;
+  font-size: 0.9em;
+  padding-bottom: 5px;
+}
