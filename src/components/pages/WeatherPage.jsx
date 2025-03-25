@@ -1,36 +1,49 @@
 import { useEffect, useState } from "react";
 
+import SearchBar from "../layout/SearchBar";
 import TodayCard from "../layout/TodayCard";
+import useGeolocation from "../useGeolocation";
+
+const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
 function WeatherPage() {
+  const [location, setLocation] = useState({
+    latitude: null,
+    longitude: null,
+  });
   const [forecastData, setForecastData] = useState(null);
-  const [error, setError] = useState(null);
+
+  const { geolocation, error } = useGeolocation();
+
+  useEffect(() => {
+    if (geolocation.latitude && geolocation.longitude) {
+      setLocation(geolocation);
+    }
+  }, [geolocation]);
 
   useEffect(() => {
     async function getForecast() {
-      const apiKey = "a5a81bc492455609ac2418ee3c7ef0e7";
-      const city = "Rio de Janeiro";
+      if (location.latitude && location.longitude) {
+        try {
+          const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric&lang=pt_br`
+          );
 
-      try {
-        const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`
-        );
+          if (!response.ok) {
+            throw new Error("Erro ao buscar dados da API");
+          }
 
-        if (!response.ok) {
-          throw new Error("Erro ao buscar dados da API");
+          const data = await response.json();
+          setForecastData(data);
+          console.log("Weather forecast:", data);
+        } catch (err) {
+          console.log("Error fetching weather forecast:", err);
         }
-
-        const data = await response.json();
-        setForecastData(data);
-        console.log("Weather forecast:", data);
-      } catch (err) {
-        setError(err.message);
-        console.error("Error fetching weather forecast:", err);
       }
     }
 
     getForecast();
-  }, []);
+  }, [location]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -73,6 +86,7 @@ function WeatherPage() {
   return (
     <div>
       <h1>Weather Page</h1>
+      <SearchBar />
       {forecastData && (
         <TodayCard
           date={date}
