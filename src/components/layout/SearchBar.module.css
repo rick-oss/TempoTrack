@@ -1,0 +1,49 @@
+.search_wrapper {
+  display: inline-flex;
+  margin: 0 0 20px 20px;
+  position: relative;
+  align-items: center;
+}
+
+.search_wrapper input {
+  width: 300px;
+  padding: 15px 15px 15px;
+  border-radius: 10px;
+  background-color: #1f242d;
+  border: none;
+  outline: none;
+}
+
+.search_wrapper button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+}
+
+button .icon {
+  font-size: 1.2em;
+  margin-top: 2px;
+  color: #888;
+}
+
+.search_wrapper ul {
+  list-style-type: none;
+  position: absolute;
+  width: 100%;
+  top: 90%;
+  z-index: 999;
+}
+
+.search_wrapper ul li {
+  padding: 8px 0 8px 15px;
+  cursor: pointer;
+  background-color: #1f242d;
+  border-top: 1px solid #555;
+}
+
+.search_wrapper ul li:hover {
+  background-color: #555;
+}
