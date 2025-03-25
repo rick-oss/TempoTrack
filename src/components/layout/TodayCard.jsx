@@ -28,7 +28,7 @@ function TodayCard({
     <div className={styles.card_wrapper}>
       <div className={styles.card_title}>
         <h3>
-          {city} - {country}
+          {city}, {country}
         </h3>
         <h3>
           {date} - {time}
@@ -47,7 +47,7 @@ function TodayCard({
           </div>
           <div className={styles.temp_content}>
             <p className={styles.temps}>
-              {Math.floor(max_temp)}
+              {Math.ceil(max_temp)}
               <span className={styles.degree}>°</span>
             </p>
             <p className={styles.temps}>
@@ -57,7 +57,7 @@ function TodayCard({
           </div>
           <div className={styles.weatherInfo}>
             <p className={styles.description}>{description}</p>
-            <p className={styles.feels_like}>Sensação térmica {Math.floor(feels_like)}°</p>
+            <p className={styles.feels_like}>Sensação térmica {Math.ceil(feels_like)}°</p>
           </div>
         </div>
       </div>
