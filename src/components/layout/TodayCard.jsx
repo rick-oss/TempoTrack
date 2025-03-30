@@ -31,14 +31,14 @@ function TodayCard({
           {city}, {country}
         </h3>
         <h3>
-          {date} - {time}
+          {date}, {time}
         </h3>
       </div>
       <div>
         <div className={styles.main_content}>
           <img src={`http://openweathermap.org/img/wn/${icon}@4x.png`} alt="Weather icon" />
           <p className={styles.current_temp}>
-            {Math.ceil(temp)}
+            {Math.floor(temp)}
             <span className={styles.degree}>°C</span>
           </p>
           <div className={styles.temp_icons}>
@@ -57,7 +57,7 @@ function TodayCard({
           </div>
           <div className={styles.weatherInfo}>
             <p className={styles.description}>{description}</p>
-            <p className={styles.feels_like}>Sensação térmica {Math.ceil(feels_like)}°</p>
+            <p className={styles.feels_like}>Sensação térmica {Math.floor(feels_like)}°</p>
           </div>
         </div>
       </div>
