@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
+import { FaTint, FaWind, FaTachometerAlt, FaEye, FaSun } from "react-icons/fa";
+import { MdCloudQueue } from "react-icons/md";
+
 import SearchBar from "../layout/SearchBar";
 import Container from "../layout/Container";
+import Title from "../layout/Title";
 import TodayCard from "../layout/TodayCard";
 import TomorrowCard from "../layout/TomorrowCard";
+import DataCard from "../layout/DataCard";
 import useGeolocation from "../useGeolocation";
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
