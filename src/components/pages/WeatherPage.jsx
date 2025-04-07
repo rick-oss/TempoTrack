@@ -21,7 +21,19 @@ function WeatherPage() {
     latitude: null,
     longitude: null,
   });
-  const [forecastData, setForecastData] = useState(null);
+  const [todayForecast, setTodayForecast] = useState(null);
+  const [tomorrowForecast, setTomorrowForecast] = useState({
+    temperature: null,
+    maxTemperature: null,
+    minTemperature: null,
+    feels_like: null,
+    humidity: null,
+    wind_speed: null,
+    visibility: null,
+    description: null,
+    icon: null,
+  });
+  const [fiveDaysForecast, setFiveDaysForecast] = useState(null);
 
   const { geolocation, error } = useGeolocation();
 
@@ -44,7 +56,7 @@ function WeatherPage() {
           }
 
           const data = await response.json();
-          setForecastData(data);
+          setTodayForecast(data);
           console.log("Weather forecast:", data);
         } catch (err) {
           console.log("Error fetching weather forecast:", err);
@@ -53,6 +65,30 @@ function WeatherPage() {
     }
 
     getForecast();
+  }, [location]);
+
+  useEffect(() => {
+    async function getFiveDaysForecast() {
+      if (location.latitude && location.longitude) {
+        try {
+          const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}&lang=pt_br`
+          );
+
+          if (!response.ok) {
+            throw new Error("Erro ao buscar dados da API");
+          }
+
+          const data = await response.json();
+          setFiveDaysForecast(data);
+          console.log("Five-days forecast:", data);
+        } catch (err) {
+          console.log("Error fetching five-days forecast:", err);
+        }
+      }
+    }
+
+    getFiveDaysForecast();
   }, [location]);
 
   useEffect(() => {
