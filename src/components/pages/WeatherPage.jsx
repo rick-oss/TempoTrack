@@ -215,24 +215,53 @@ function WeatherPage() {
       <h1>Weather Page</h1>
       <SearchBar onLocationSelect={getCoordinates} />
       <Container>
-        {forecastData && (
+        {todayForecast && (
           <TodayCard
-            date={capitalize(formattedString)}
-            time={time}
-            city={removeAfterSecondComma(city)}
-            country={forecastData.sys.country}
-            icon={forecastData.weather[0].icon}
-            description={capitalize(forecastData.weather[0].description)}
-            temp={forecastData.main.temp}
-            max_temp={forecastData.main.temp_max}
-            min_temp={forecastData.main.temp_min}
-            feels_like={forecastData.main.feels_like}
-            humidity={forecastData.main.humidity}
-            wind_speed={convertWindSpeed(forecastData.wind.speed)}
-            pressure={forecastData.main.pressure}
-            visibility={convertVisibility(forecastData.visibility)}
-            sunset={sunsetTime}
-            dew_point={calculateDewPoint(forecastData.main.temp, forecastData.main.humidity)}
+            title={
+              <Title
+                line1={`${removeAfterSecondComma(city)}, ${todayForecast.sys.country}`}
+                line2={`${date}, ${time}`}
+              />
+            }
+            icon={todayForecast.weather[0].icon}
+            description={capitalize(todayForecast.weather[0].description)}
+            temp={todayForecast.main.temp}
+            max_temp={todayForecast.main.temp_max}
+            min_temp={todayForecast.main.temp_min}
+            feels_like={todayForecast.main.feels_like}
+            dataCards={[
+              <DataCard
+                dataName="Umidade"
+                dataIcon={<FaTint />}
+                dataValue={`${todayForecast.main.humidity}%`}
+                iconColor="#00ffff"
+              />,
+              <DataCard
+                dataName="Vento"
+                dataIcon={<FaWind />}
+                dataValue={convertWindSpeed(todayForecast.wind.speed)}
+                iconColor="#5f9ea0"
+              />,
+              <DataCard
+                dataName="Pressão"
+                dataIcon={<FaTachometerAlt />}
+                dataValue={`${todayForecast.main.pressure} mb`}
+                iconColor="#9370db"
+              />,
+              <DataCard
+                dataName="Visibilidade"
+                dataIcon={<FaEye />}
+                dataValue={convertVisibility(todayForecast.visibility)}
+                iconColor="#87ceeb"
+              />,
+              <DataCard dataName="Pôr do Sol" dataIcon={<FaSun />} dataValue={sunsetTime} iconColor="#ffa500" />,
+              <DataCard
+                dataName="P. de Orvalho"
+                dataIcon={<MdCloudQueue />}
+                dataValue={calculateDewPoint(todayForecast.main.temp, todayForecast.main.humidity)}
+                iconColor="#b0c4de"
+              />,
+            ]}
           />
         )}
         <TomorrowCard />
