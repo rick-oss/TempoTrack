@@ -264,7 +264,48 @@ function WeatherPage() {
             ]}
           />
         )}
-        <TomorrowCard />
+        {tomorrowForecast && (
+          <TodayCard
+            customClass="custom_card"
+            title={<Title line1="Amanhã" line2={tomorrowDate} />}
+            icon={tomorrowForecast.icon}
+            temp={tomorrowForecast.temperature}
+            max_temp={tomorrowForecast.maxTemperature}
+            min_temp={tomorrowForecast.minTemperature}
+            description={capitalize(tomorrowForecast.description)}
+            feels_like={tomorrowForecast.feels_like}
+            dataCards={[
+              <DataCard
+                dataName="Umidade"
+                dataIcon={<FaTint />}
+                dataValue={`${Math.floor(tomorrowForecast.humidity)}%`}
+                iconColor="#00ffff"
+              />,
+              <DataCard
+                dataName="Vento"
+                dataIcon={<FaWind />}
+                dataValue={convertWindSpeed(tomorrowForecast.wind_speed)}
+                iconColor="#5f9ea0"
+              />,
+              <DataCard
+                dataName="Visibilidade"
+                dataIcon={<FaEye />}
+                dataValue={convertVisibility(tomorrowForecast.visibility)}
+                iconColor="#87ceeb"
+              />,
+            ]}
+          />
+        )}
+        {/*tomorrowForecast && (
+          <TomorrowCard
+            date={tomorrowDate}
+            icon={tomorrowForecast.icon}
+            temperature={tomorrowForecast.temperature}
+            max_temp={tomorrowForecast.maxTemperature}
+            min_temp={tomorrowForecast.minTemperature}
+            feels_like={tomorrowForecast.feels_like}
+          />
+        )*/}
       </Container>
     </div>
   );
