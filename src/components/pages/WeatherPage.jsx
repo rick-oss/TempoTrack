@@ -113,14 +113,45 @@ function WeatherPage() {
     getCityName(geolocation.latitude, geolocation.longitude);
   }, [geolocation, city]); // Adiciona city como dependência apenas pro eslint calar a boca
 
+  // Obtém a data do dia subsequente
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowDate = tomorrow
+    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
+    .replace(".", "")
+    .split(" de ")
+    .join(" ");
+
+  // Splita e obtém a data do formato ISO(2025-04-03T15:55:00.123Z -> 2025-04-03)
+  const tomorrowStr = tomorrow.toISOString().split("T")[0];
+
+  useEffect(() => {
+    if (fiveDaysForecast) {
+      const tomorrowData = fiveDaysForecast.list.filter((entry) => entry.dt_txt.startsWith(tomorrowStr));
+
+      setTomorrowForecast({
+        temperature: getAvg(tomorrowData.map((entry) => entry.main.temp)),
+        maxTemperature: Math.max(...tomorrowData.map((entry) => entry.main?.temp_max ?? 0)),
+        minTemperature: Math.min(...tomorrowData.map((entry) => entry.main?.temp_min ?? 0)),
+        feels_like: getAvg(tomorrowData.map((entry) => entry.main.feels_like)),
+        humidity: getAvg(tomorrowData.map((entry) => entry.main.humidity)),
+        wind_speed: getAvg(tomorrowData.map((entry) => entry.wind.speed)),
+        visibility: getAvg(tomorrowData.map((entry) => entry.visibility)),
+        description: tomorrowData[0].weather[0].description,
+        icon: tomorrowData[0].weather[0].icon,
+      });
+    }
+  }, [fiveDaysForecast, tomorrowStr]);
+
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  if (!forecastData) {
+  if (!todayForecast) {
     return <div>Carregando...</div>;
   }
 
+  // Obtém dados da cidade digitada na barra de pesquisa
   const getCoordinates = (city_name, latitude, longitude) => {
     setCity(city_name);
     setLocation({
