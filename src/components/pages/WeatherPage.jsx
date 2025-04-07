@@ -160,8 +160,8 @@ function WeatherPage() {
     });
   };
 
-  const timeStamp = forecastData.dt * 1000;
-  const sunsetTimeStamp = forecastData.sys.sunset;
+  const timeStamp = todayForecast.dt * 1000;
+  const sunsetTimeStamp = todayForecast.sys.sunset;
 
   const dateObj = new Date(timeStamp);
   const sunsetTime = new Date(sunsetTimeStamp * 1000).toLocaleTimeString("pt-BR", {
@@ -169,15 +169,24 @@ function WeatherPage() {
     minute: "2-digit",
   });
 
-  const date = dateObj.toLocaleDateString("en-US", { day: "2-digit", month: "short" });
+  const date = dateObj
+    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
+    .replace(".", "")
+    .split(" de ")
+    .join(" ");
   const time = dateObj.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
-  // Inverte o dia e mês de posição
-  const [month, day] = date.split(" ");
-  const formattedString = `${day} ${month}`;
+  const getAvg = (temperatures) => {
+    const AvgTemperature = temperatures.reduce((acc, temp) => acc + temp, 0) / temperatures.length;
+    return AvgTemperature;
+  };
 
   // Capitaliza descrições recebidas
-  const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+  const capitalize = (str) => {
+    if (str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  };
 
   // Converte a velocidade do vento recebiba (m/s -> km/h)
   const convertWindSpeed = (speed) => {
@@ -195,6 +204,7 @@ function WeatherPage() {
     return `${Math.ceil(temperature - (100 - humidity) / 5)}°`;
   };
 
+  // Remove caracteres após a segunda vírgula (Ex.: Sp, Sp, BR -> Sp, Sp)
   const removeAfterSecondComma = (str) => {
     const parts = str.split(",");
     return parts.length > 2 ? parts.slice(0, 2).join(",") : str;
