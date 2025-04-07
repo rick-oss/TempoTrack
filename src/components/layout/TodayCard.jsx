@@ -1,39 +1,12 @@
 import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
-import { FaTint, FaWind, FaTachometerAlt, FaEye, FaSun } from "react-icons/fa";
-import { MdCloudQueue } from "react-icons/md";
 
-import DataCard from "./DataCard";
+import Title from "./Title";
 import styles from "./TodayCard.module.css";
 
-function TodayCard({
-  city,
-  country,
-  date,
-  time,
-  icon,
-  description,
-  temp,
-  max_temp,
-  min_temp,
-  feels_like,
-  humidity,
-  wind_speed,
-  pressure,
-  visibility,
-  sunset,
-  dew_point,
-}) {
-  console.log(wind_speed);
+function TodayCard({ title, icon, description, temp, max_temp, min_temp, feels_like, dataCards, customClass }) {
   return (
-    <div className={styles.card_wrapper}>
-      <div className={styles.card_title}>
-        <h3>
-          {city}, {country}
-        </h3>
-        <h3>
-          {date}, {time}
-        </h3>
-      </div>
+    <div className={`${styles.card_wrapper} ${styles[customClass]}`}>
+      {title}
       <div>
         <div className={styles.main_content}>
           <img src={`http://openweathermap.org/img/wn/${icon}@4x.png`} alt="Weather icon" />
@@ -55,20 +28,17 @@ function TodayCard({
               <span className={styles.degree}>°</span>
             </p>
           </div>
-          <div className={styles.weatherInfo}>
+          <div className={styles.weather_info}>
             <p className={styles.description}>{description}</p>
             <p className={styles.feels_like}>Sensação térmica {Math.floor(feels_like)}°</p>
           </div>
         </div>
       </div>
-      <div className={styles.weatherDetails}>
-        <DataCard dataName="Umidade" dataIcon={<FaTint />} dataValue={`${humidity}%`} iconColor="#00ffff" />
-        <DataCard dataName="Vento" dataIcon={<FaWind />} dataValue={wind_speed} iconColor="#5f9ea0" />
-        <DataCard dataName="Pressão" dataIcon={<FaTachometerAlt />} dataValue={`${pressure} mb`} iconColor="#9370db" />
-        <DataCard dataName="Visibilidade" dataIcon={<FaEye />} dataValue={visibility} iconColor="#87ceeb" />
-        <DataCard dataName="Pôr do Sol" dataIcon={<FaSun />} dataValue={sunset} iconColor="#ffa500" />
-        <DataCard dataName="P. de Orvalho" dataIcon={<MdCloudQueue />} dataValue={dew_point} iconColor="#b0c4de" />
-      </div>
+      <ul className={styles.weather_details}>
+        {dataCards.map((dataCard, index) => (
+          <li key={index}>{dataCard}</li>
+        ))}
+      </ul>
     </div>
   );
 }
