@@ -1,0 +1,10 @@
+.title_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid #555;
+}
+
+.title_wrapper h3 {
+  font-size: 1.2em;
+}
