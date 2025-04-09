@@ -7,8 +7,7 @@ import { MdCloudQueue } from "react-icons/md";
 import SearchBar from "../layout/SearchBar";
 import Container from "../layout/Container";
 import Title from "../layout/Title";
-import TodayCard from "../layout/TodayCard";
-import TomorrowCard from "../layout/TomorrowCard";
+import ForecastCard from "../layout/ForecastCard";
 import DataCard from "../layout/DataCard";
 import useGeolocation from "../useGeolocation";
 
@@ -216,7 +215,7 @@ function WeatherPage() {
       <SearchBar onLocationSelect={getCoordinates} />
       <Container>
         {todayForecast && (
-          <TodayCard
+          <ForecastCard
             title={
               <Title
                 line1={`${removeAfterSecondComma(city)}, ${todayForecast.sys.country}`}
@@ -265,7 +264,7 @@ function WeatherPage() {
           />
         )}
         {tomorrowForecast && (
-          <TodayCard
+          <ForecastCard
             customClass="custom_card"
             title={<Title line1="Amanhã" line2={tomorrowDate} />}
             icon={tomorrowForecast.icon}
@@ -296,16 +295,6 @@ function WeatherPage() {
             ]}
           />
         )}
-        {/*tomorrowForecast && (
-          <TomorrowCard
-            date={tomorrowDate}
-            icon={tomorrowForecast.icon}
-            temperature={tomorrowForecast.temperature}
-            max_temp={tomorrowForecast.maxTemperature}
-            min_temp={tomorrowForecast.minTemperature}
-            feels_like={tomorrowForecast.feels_like}
-          />
-        )*/}
       </Container>
     </div>
   );
