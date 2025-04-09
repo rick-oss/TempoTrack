@@ -1,9 +1,8 @@
 import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
 
-import Title from "./Title";
-import styles from "./TodayCard.module.css";
+import styles from "./ForecastCard.module.css";
 
-function TodayCard({ title, icon, description, temp, max_temp, min_temp, feels_like, dataCards, customClass }) {
+function ForecastCard({ title, icon, description, temp, max_temp, min_temp, feels_like, dataCards, customClass }) {
   return (
     <div className={`${styles.card_wrapper} ${styles[customClass]}`}>
       {title}
@@ -43,4 +42,4 @@ function TodayCard({ title, icon, description, temp, max_temp, min_temp, feels_l
   );
 }
 
-export default TodayCard;
+export default ForecastCard;
