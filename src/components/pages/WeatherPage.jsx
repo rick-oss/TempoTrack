@@ -8,6 +8,7 @@ import SearchBar from "../layout/SearchBar";
 import Container from "../layout/Container";
 import Title from "../layout/Title";
 import ForecastCard from "../layout/ForecastCard";
+import FiveDaysForecast from "../layout/FiveDaysForecast";
 import DataCard from "../layout/DataCard";
 import useGeolocation from "../useGeolocation";
 
@@ -33,6 +34,7 @@ function WeatherPage() {
     icon: null,
   });
   const [fiveDaysForecast, setFiveDaysForecast] = useState(null);
+  const [groupedForecast, setGroupedForecast] = useState({});
 
   const { geolocation, error } = useGeolocation();
 
