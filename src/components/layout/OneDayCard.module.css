@@ -1,0 +1,26 @@
+.card_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #555;
+}
+
+.card_wrapper h3 {
+  font-size: 1em;
+  width: 45px;
+}
+
+.card_wrapper p {
+  width: 55px;
+  text-align: center;
+}
+
+.card_wrapper .temps {
+  display: flex;
+  align-items: center;
+}
+
+.card_wrapper .wind,
+.card_wrapper img {
+  width: 70px;
+}
