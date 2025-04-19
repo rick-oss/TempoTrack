@@ -217,17 +217,17 @@ function WeatherPage() {
   // Converte a velocidade do vento recebiba (m/s -> km/h)
   const convertWindSpeed = (speed) => {
     const speedInKmH = speed * 3.6;
-    return `${Math.floor(speedInKmH)} Km/h`;
+    return `${Math.round(speedInKmH)} Km/h`;
   };
 
   // Converte a visibilidade recebida (m -> km)
   const convertVisibility = (visibility) => {
-    return `${visibility / 1000} km`;
+    return `${Math.round(visibility / 1000)} km`;
   };
 
   // Calcula o ponto de orvalho
   const calculateDewPoint = (temperature, humidity) => {
-    return `${Math.ceil(temperature - (100 - humidity) / 5)}°`;
+    return `${Math.round(temperature - (100 - humidity) / 5)}°`;
   };
 
   // Remove caracteres após a segunda vírgula (Ex.: Sp, Sp, BR -> Sp, Sp)
