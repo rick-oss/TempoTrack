@@ -1,7 +1,7 @@
 import styles from "./Container.module.css";
 
-const Container = ({ children }) => {
-  return <div className={styles.wrapper}>{children}</div>;
+const Container = ({ children, customClass }) => {
+  return <div className={`${styles.wrapper} ${styles[customClass]}`}>{children}</div>;
 };
 
 export default Container;
