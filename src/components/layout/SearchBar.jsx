@@ -53,7 +53,11 @@ const SearchBar = ({ onLocationSelect }) => {
           if (e.key === "Enter" && results.length > 0) {
             const firstResult = results[0];
             getSelectedPlace(firstResult.place_name);
-            getPlaceCoordinates(firstResult.geometry.coordinates[1], firstResult.geometry.coordinates[0]);
+            getPlaceCoordinates(
+              firstResult.place_name,
+              firstResult.geometry.coordinates[1],
+              firstResult.geometry.coordinates[0]
+            );
             setSearchPlace("");
           }
         }}
