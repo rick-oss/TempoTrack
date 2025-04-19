@@ -220,6 +220,25 @@ function WeatherPage() {
     return `${Math.round(speedInKmH)} Km/h`;
   };
 
+  const cardsData = Object.entries(groupedForecast).map(([date, entries]) => {
+    const objDate = new Date(`${date}T12:00:00`);
+    const objMonth = objDate.getMonth() + 1;
+
+    const dayName = objDate.toLocaleDateString("pt-BR", { weekday: "short" }).replace(",", "");
+    const dayNumber = objDate.toLocaleDateString("pt-BR", { day: "2-digit" });
+    const monthNumber = objMonth.toString().padStart(2, "0");
+
+    return {
+      dateName: capitalize(dayName),
+      date: `${dayNumber}/${monthNumber}`,
+      icon: entries[Math.floor(entries.length / 2)].weather[0].icon,
+      temp: getAvg(entries.map((entry) => entry.main.temp)),
+      maxTemp: getAvg(entries.map((entry) => entry.main.temp_max)),
+      minTemp: getAvg(entries.map((entry) => entry.main.temp_min)),
+      windSpeed: convertWindSpeed(getAvg(entries.map((entry) => entry.wind.speed))),
+    };
+  });
+
   // Converte a visibilidade recebida (m -> km)
   const convertVisibility = (visibility) => {
     return `${Math.round(visibility / 1000)} km`;
@@ -322,6 +341,9 @@ function WeatherPage() {
             ]}
           />
         )}
+      </Container>
+      <Container customClass="custom_class">
+        <FiveDaysForecast cards={cardsData} />
       </Container>
     </div>
   );
