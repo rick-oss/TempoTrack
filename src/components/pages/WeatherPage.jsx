@@ -144,6 +144,47 @@ function WeatherPage() {
     }
   }, [fiveDaysForecast, tomorrowStr]);
 
+  const timeStamp = todayForecast?.dt ? todayForecast.dt * 1000 : null;
+  const sunsetTimeStamp = todayForecast?.sys.sunset;
+
+  const dateObj = new Date(timeStamp); // Obtém data atual
+  const sunsetTime = new Date(sunsetTimeStamp * 1000).toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }); // Obtém hora do pôr do sol
+
+  // Formata data e hora
+  const date = dateObj
+    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
+    .replace(".", "")
+    .split(" de ")
+    .join(" ");
+  const time = dateObj.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+
+  const todayStr = dateObj.toISOString().split("T")[0];
+
+  useEffect(() => {
+    if (fiveDaysForecast) {
+      const upcomingForecast = fiveDaysForecast.list.filter((entry) => !entry.dt_txt.startsWith(todayStr));
+
+      const groupedByDay = {};
+
+      upcomingForecast.forEach((entry) => {
+        const date = entry.dt_txt.split(" ")[0];
+        if (!groupedByDay[date]) {
+          groupedByDay[date] = [];
+        }
+        groupedByDay[date].push(entry);
+      });
+
+      setGroupedForecast(groupedByDay);
+
+      //.log(groupedByDay);
+
+      //console.log(upcomingForecast);
+    }
+  }, [fiveDaysForecast, todayStr]);
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -160,22 +201,6 @@ function WeatherPage() {
       longitude,
     });
   };
-
-  const timeStamp = todayForecast.dt * 1000;
-  const sunsetTimeStamp = todayForecast.sys.sunset;
-
-  const dateObj = new Date(timeStamp);
-  const sunsetTime = new Date(sunsetTimeStamp * 1000).toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  const date = dateObj
-    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })
-    .replace(".", "")
-    .split(" de ")
-    .join(" ");
-  const time = dateObj.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
   const getAvg = (temperatures) => {
     const AvgTemperature = temperatures.reduce((acc, temp) => acc + temp, 0) / temperatures.length;
