@@ -1,7 +1,11 @@
 .card_wrapper {
   width: 67%;
   border-radius: 10px;
-  background-color: #1f242d;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .main_content {
@@ -59,12 +63,12 @@
 
 .weather_info {
   margin-left: 2em;
+  font-weight: 600;
 }
 
 .weather_info .description {
   font-size: 1.5em;
   padding-bottom: 5px;
-  font-weight: 600;
 }
 
 .weather_info .feels_like {

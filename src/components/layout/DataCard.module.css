@@ -2,12 +2,13 @@
   width: 120px;
   text-align: center;
   margin-top: 15px;
-  background-color: #333a49;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 15px;
 }
 
 .card_wrapper p {
-  color: #ffffff;
   text-align: left;
   font-size: 1em;
   padding: 5px 5px 5px 8px;
@@ -20,7 +21,6 @@
 }
 
 .card_wrapper figcaption {
-  color: #ffffff;
   font-size: 0.9em;
   padding-bottom: 5px;
 }

@@ -3,20 +3,21 @@
   margin: 0 0 20px 20px;
   position: relative;
   align-items: center;
+  color: #fff;
 }
 
 .search_wrapper input {
   width: 300px;
   padding: 15px 15px 15px;
   border-radius: 10px;
-  background-color: #1f242d;
-  color: #fff;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   outline: none;
 }
 
 .search_wrapper input::placeholder {
-  color: #888;
+  color: #fff;
 }
 
 .search_wrapper i {
@@ -29,22 +30,25 @@
 
 i .icon {
   margin-top: 5px;
-  color: #888;
 }
 
 .search_wrapper ul {
   list-style-type: none;
   position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
   width: 100%;
   top: 90%;
   z-index: 999;
 }
 
 .search_wrapper ul li {
-  padding: 8px 0 8px 15px;
+  padding: 12px 0 12px 10px;
   cursor: pointer;
   background-color: #1f242d;
-  border-top: 1px solid #555;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .search_wrapper ul li:hover {
