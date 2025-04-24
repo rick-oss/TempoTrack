@@ -25,23 +25,8 @@
 html,
 body {
   min-height: 100%;
-  background-image: url("/images/cidade.jpg");
-  background-size: cover;
-  background-position: center;
   position: relative;
   z-index: 0;
-}
-
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  pointer-events: none;
-  z-index: -1;
 }
 
 @media (prefers-color-scheme: light) {
