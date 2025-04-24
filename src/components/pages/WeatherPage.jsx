@@ -314,7 +314,7 @@ function WeatherPage() {
                 dataName="Vento"
                 dataIcon={<FaWind />}
                 dataValue={convertWindSpeed(todayForecast.wind.speed)}
-                iconColor="#5f9ea0"
+                iconColor="#4dd0e1"
               />,
               <DataCard
                 dataName="Pressão"
@@ -359,7 +359,7 @@ function WeatherPage() {
                 dataName="Vento"
                 dataIcon={<FaWind />}
                 dataValue={convertWindSpeed(tomorrowForecast.wind_speed)}
-                iconColor="#5f9ea0"
+                iconColor="#4dd0e1"
               />,
               <DataCard
                 dataName="Visibilidade"
