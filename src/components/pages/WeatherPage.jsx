@@ -255,8 +255,37 @@ function WeatherPage() {
     return parts.length > 2 ? parts.slice(0, 2).join(",") : str;
   };
 
+  const getBackgroundByWeather = (weatherMain) => {
+    switch (weatherMain) {
+      case "Clear":
+        return "/images/clear-sky.jpg";
+      case "Clouds":
+      case "Mist":
+      case "Haze":
+      case "Fog":
+        return "/images/clouds.jpg";
+      case "Rain":
+      case "Drizzle":
+        return "/images/rain.jpg";
+      case "Thunderstorm":
+        return "/images/thunderstorm.jpg";
+      case "Snow":
+        return "/images/snow.jpg";
+      default:
+        return "/images/clear-sky.jpg";
+    }
+  };
+  const bgImage = getBackgroundByWeather(todayForecast.weather[0].main);
+
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100%",
+      }}
+    >
       <h1>Weather Page</h1>
       <SearchBar onLocationSelect={getCoordinates} />
       <Container>
