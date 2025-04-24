@@ -65,20 +65,22 @@ const SearchBar = ({ onLocationSelect }) => {
       <i>
         <FaSearch className={styles.icon} />
       </i>
-      <ul>
-        {results.map((result) => (
-          <li
-            key={result.id}
-            onClick={() => {
-              getSelectedPlace(result.place_name);
-              getPlaceCoordinates(result.place_name, result.geometry.coordinates[1], result.geometry.coordinates[0]);
-              setSearchPlace("");
-            }}
-          >
-            {result.place_name}
-          </li>
-        ))}
-      </ul>
+      {results.length > 0 && (
+        <ul>
+          {results.map((result) => (
+            <li
+              key={result.id}
+              onClick={() => {
+                getSelectedPlace(result.place_name);
+                getPlaceCoordinates(result.place_name, result.geometry.coordinates[1], result.geometry.coordinates[0]);
+                setSearchPlace("");
+              }}
+            >
+              {result.place_name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
