@@ -233,8 +233,8 @@ function WeatherPage() {
       date: `${dayNumber}/${monthNumber}`,
       icon: entries[Math.floor(entries.length / 2)].weather[0].icon,
       temp: getAvg(entries.map((entry) => entry.main.temp)),
-      maxTemp: getAvg(entries.map((entry) => entry.main.temp_max)),
-      minTemp: getAvg(entries.map((entry) => entry.main.temp_min)),
+      maxTemp: Math.max(...entries.map((entry) => entry.main.temp_max)),
+      minTemp: Math.min(...entries.map((entry) => entry.main.temp_min)),
       windSpeed: convertWindSpeed(getAvg(entries.map((entry) => entry.wind.speed))),
     };
   });
