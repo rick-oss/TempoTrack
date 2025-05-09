@@ -141,31 +141,40 @@ function WeatherPage() {
   const tomorrowStr = tomorrow.toISOString().split("T")[0];
 
   useEffect(() => {
-    if (fiveDaysForecast) {
-      const tomorrowData = fiveDaysForecast.list.filter((entry) => entry.dt_txt.startsWith(tomorrowStr));
+    async function processTomorrow() {
+      if (!fiveDaysLoading && fiveDaysForecast) {
+        const tomorrowData = fiveDaysForecast.list.filter((entry) => entry.dt_txt.startsWith(tomorrowStr));
 
-      setTomorrowForecast({
-        temperature: getAvg(tomorrowData.map((entry) => entry.main.temp)),
-        maxTemperature: Math.max(...tomorrowData.map((entry) => entry.main?.temp_max ?? 0)),
-        minTemperature: Math.min(...tomorrowData.map((entry) => entry.main?.temp_min ?? 0)),
-        feels_like: getAvg(tomorrowData.map((entry) => entry.main.feels_like)),
-        humidity: getAvg(tomorrowData.map((entry) => entry.main.humidity)),
-        wind_speed: getAvg(tomorrowData.map((entry) => entry.wind.speed)),
-        visibility: getAvg(tomorrowData.map((entry) => entry.visibility)),
-        description: tomorrowData[0].weather[0].description,
-        icon: tomorrowData[0].weather[0].icon,
-      });
+        setTomorrowForecast({
+          temperature: getAvg(tomorrowData.map((entry) => entry.main.temp)),
+          maxTemperature: Math.max(...tomorrowData.map((entry) => entry.main?.temp_max ?? 0)),
+          minTemperature: Math.min(...tomorrowData.map((entry) => entry.main?.temp_min ?? 0)),
+          feels_like: getAvg(tomorrowData.map((entry) => entry.main.feels_like)),
+          humidity: getAvg(tomorrowData.map((entry) => entry.main.humidity)),
+          wind_speed: getAvg(tomorrowData.map((entry) => entry.wind.speed)),
+          visibility: getAvg(tomorrowData.map((entry) => entry.visibility)),
+          description: tomorrowData[0].weather[0].description,
+          icon: tomorrowData[0].weather[0].icon,
+        });
+      }
     }
-  }, [fiveDaysForecast, tomorrowStr]);
+
+    processTomorrow();
+  }, [fiveDaysForecast, fiveDaysLoading, tomorrowStr]);
 
   const timeStamp = todayForecast?.dt ? todayForecast.dt * 1000 : null;
-  const sunsetTimeStamp = todayForecast?.sys.sunset;
+  const sunsetUTC = todayForecast?.sys.sunset;
+  const timezone = todayForecast?.timezone;
 
   const dateObj = new Date(timeStamp); // Obtém data atual
-  const sunsetTime = new Date(sunsetTimeStamp * 1000).toLocaleTimeString("pt-BR", {
+  const sunsetObj = new Date((sunsetUTC + timezone) * 1000); // Obtém horário do pôr do sol
+
+  // Formata horário do pôr do sol apartir do local
+  const sunsetTime = sunsetObj.toLocaleTimeString("pt-BR", {
     hour: "2-digit",
     minute: "2-digit",
-  }); // Obtém hora do pôr do sol
+    timeZone: "UTC",
+  });
 
   // Formata data e hora
   const date = dateObj
@@ -192,10 +201,6 @@ function WeatherPage() {
       });
 
       setGroupedForecast(groupedByDay);
-
-      //.log(groupedByDay);
-
-      //console.log(upcomingForecast);
     }
   }, [fiveDaysForecast, todayStr]);
 
