@@ -10,6 +10,8 @@ import Title from "../layout/Title";
 import ForecastCard from "../layout/ForecastCard";
 import FiveDaysForecast from "../layout/FiveDaysForecast";
 import DataCard from "../layout/DataCard";
+import Loading from "../layout/Loading";
+
 import useGeolocation from "../useGeolocation";
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
