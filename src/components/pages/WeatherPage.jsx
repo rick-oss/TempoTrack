@@ -221,6 +221,11 @@ function WeatherPage() {
     });
   };
 
+  // Alterna entre as unidades de temperatura
+  const toggleUnits = () => {
+    setUnits((prev) => (prev === "metric" ? "imperial" : "metric"));
+  };
+
   const getAvg = (temperatures) => {
     const AvgTemperature = temperatures.reduce((acc, temp) => acc + temp, 0) / temperatures.length;
     return AvgTemperature;
