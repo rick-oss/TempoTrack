@@ -6,9 +6,11 @@ import styles from "./SearchBar.module.css";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
 
-const SearchBar = ({ onLocationSelect }) => {
+const SearchBar = ({ onLocationSelect, onUnitToggle, unit }) => {
   const [searchPlace, setSearchPlace] = useState("");
   const [results, setResults] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (searchPlace) {
@@ -20,7 +22,6 @@ const SearchBar = ({ onLocationSelect }) => {
           const data = await response.json();
 
           setResults(data.features);
-          console.log(data.features);
         } catch (err) {
           console.log("Error fetching suggestions:", err);
         }
@@ -59,6 +60,16 @@ const SearchBar = ({ onLocationSelect }) => {
               firstResult.geometry.coordinates[0]
             );
             setSearchPlace("");
+          } else if (e.key === "Enter" && results.length === 0) {
+            setErrorMessage("Por favor, digite um local válido.");
+            setShowError(true);
+            console.log(showError);
+
+            setTimeout(() => {
+              setShowError(false);
+              console.log(showError);
+              setTimeout(() => setErrorMessage(""), 300);
+            }, 3000);
           }
         }}
       />
@@ -81,6 +92,10 @@ const SearchBar = ({ onLocationSelect }) => {
           ))}
         </ul>
       )}
+      {errorMessage && (
+        <div className={`${styles.message} ${showError ? styles.show : styles.hide}`}>{errorMessage}</div>
+      )}
+      <button onClick={onUnitToggle}>Ver em {unit === "metric" ? "°F" : "°C"}</button>
     </div>
   );
 };
