@@ -2,7 +2,7 @@ import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
 
 import styles from "./OneDayCard.module.css";
 
-function OneDayCard({ date_name, date, icon, temp, max_temp, min_temp, wind_speed }) {
+function OneDayCard({ date_name, date, icon, temp, max_temp, min_temp, wind_speed, unit }) {
   return (
     <div className={styles.card_wrapper}>
       <h3>{date_name}</h3>
