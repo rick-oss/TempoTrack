@@ -2,7 +2,18 @@ import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
 
 import styles from "./ForecastCard.module.css";
 
-function ForecastCard({ title, icon, description, temp, max_temp, min_temp, feels_like, dataCards, customClass }) {
+function ForecastCard({
+  title,
+  icon,
+  description,
+  unit,
+  temp,
+  max_temp,
+  min_temp,
+  feels_like,
+  dataCards,
+  customClass,
+}) {
   return (
     <div className={`${styles.card_wrapper} ${styles[customClass]}`}>
       {title}
