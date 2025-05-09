@@ -239,9 +239,8 @@ function WeatherPage() {
   };
 
   // Converte a velocidade do vento recebiba (m/s -> km/h)
-  const convertWindSpeed = (speed) => {
-    const speedInKmH = speed * 3.6;
-    return `${Math.round(speedInKmH)} Km/h`;
+  const convertWindSpeed = (speed, unit) => {
+    return unit === "metric" ? `${Math.round(speed * 3.6)} Km/h` : `${Math.round(speed)} mph`;
   };
 
   const cardsData = Object.entries(groupedForecast).map(([date, entries]) => {
@@ -259,7 +258,8 @@ function WeatherPage() {
       temp: getAvg(entries.map((entry) => entry.main.temp)),
       maxTemp: Math.max(...entries.map((entry) => entry.main.temp_max)),
       minTemp: Math.min(...entries.map((entry) => entry.main.temp_min)),
-      windSpeed: convertWindSpeed(getAvg(entries.map((entry) => entry.wind.speed))),
+      windSpeed: convertWindSpeed(getAvg(entries.map((entry) => entry.wind.speed)), units),
+      unit: units,
     };
   });
 
