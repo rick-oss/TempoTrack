@@ -52,9 +52,11 @@ function WeatherPage() {
   useEffect(() => {
     async function getForecast() {
       if (location.latitude && location.longitude) {
+        setLoading(true);
+
         try {
           const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=metric&lang=pt_br`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${apiKey}&units=${units}&lang=pt_br`
           );
 
           if (!response.ok) {
@@ -66,19 +68,24 @@ function WeatherPage() {
           console.log("Weather forecast:", data);
         } catch (err) {
           console.log("Error fetching weather forecast:", err);
+        } finally {
+          setLoading(false);
         }
       }
     }
 
     getForecast();
-  }, [location]);
+  }, [location, units]);
 
   useEffect(() => {
     async function getFiveDaysForecast() {
       if (location.latitude && location.longitude) {
+        setFiveDaysForecast(null);
+        setFiveDaysLoading(true);
+
         try {
           const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}&lang=pt_br`
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=${units}&appid=${apiKey}&lang=pt_br`
           );
 
           if (!response.ok) {
@@ -90,12 +97,14 @@ function WeatherPage() {
           console.log("Five-days forecast:", data);
         } catch (err) {
           console.log("Error fetching five-days forecast:", err);
+        } finally {
+          setFiveDaysLoading(false);
         }
       }
     }
 
     getFiveDaysForecast();
-  }, [location]);
+  }, [location, units]);
 
   useEffect(() => {
     async function getCityName(lat, lon) {
