@@ -209,7 +209,7 @@ function WeatherPage() {
   }
 
   if (!todayForecast) {
-    return <div>Carregando...</div>;
+    return <Loading size={18} />;
   }
 
   // Obtém dados da cidade digitada na barra de pesquisa
