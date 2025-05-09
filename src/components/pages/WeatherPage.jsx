@@ -37,6 +37,9 @@ function WeatherPage() {
   });
   const [fiveDaysForecast, setFiveDaysForecast] = useState(null);
   const [groupedForecast, setGroupedForecast] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [fiveDaysLoading, setFiveDaysLoading] = useState(false);
+  const [units, setUnits] = useState("metric");
 
   const { geolocation, error } = useGeolocation();
 
