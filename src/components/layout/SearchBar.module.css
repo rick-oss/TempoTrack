@@ -56,3 +56,40 @@ i .icon {
 .search_wrapper ul li:hover {
   background-color: #888;
 }
+
+.message {
+  position: absolute;
+  left: 310px;
+  width: 500px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 11px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  background-color: rgba(238, 25, 25, 0.4);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.message.show {
+  opacity: 1;
+}
+
+.message.hide {
+  opacity: 0;
+}
+
+.search_wrapper button {
+  padding: 15px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+}
+
+.search_wrapper button:hover {
+  background: none;
+}
