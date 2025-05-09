@@ -1,19 +1,21 @@
 .search_wrapper {
-  display: inline-flex;
-  margin: 0 0 20px 20px;
+  display: flex;
+  margin: 0 20px 20px;
   position: relative;
   align-items: center;
+  justify-content: space-between;
   color: #fff;
 }
 
 .search_wrapper input {
   width: 300px;
-  padding: 15px 15px 15px;
+  padding: 15px 15px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   outline: none;
+  margin-right: 30px;
 }
 
 .search_wrapper input::placeholder {
@@ -25,7 +27,7 @@
   border: none;
   padding: 0;
   position: absolute;
-  right: 15px;
+  left: 270px;
 }
 
 i .icon {
