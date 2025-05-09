@@ -8,7 +8,10 @@ function OneDayCard({ date_name, date, icon, temp, max_temp, min_temp, wind_spee
       <h3>{date_name}</h3>
       <p>{date}</p>
       <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="ícone do clima" />
-      <p>{temp}°C</p>
+      <p>
+        {temp}
+        {unit === "metric" ? "°C" : "°F"}
+      </p>
       <p className={styles.temps}>
         <FaTemperatureHigh size={20} color="#ff0000" className={styles.icons} />
         {max_temp}°
