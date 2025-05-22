@@ -74,11 +74,11 @@ const SearchBar = ({ onLocationSelect, customClass }) => {
           }
         }}
       />
-      <i>
+      <i className={styles.search_icon}>
         <FaSearch className={styles.icon} />
       </i>
       {results.length > 0 && (
-        <ul>
+        <ul className={styles.suggestions}>
           {results.map((result) => (
             <li
               key={result.id}
@@ -93,10 +93,7 @@ const SearchBar = ({ onLocationSelect, customClass }) => {
           ))}
         </ul>
       )}
-      {errorMessage && (
-        <div className={`${styles.message} ${showError ? styles.show : styles.hide}`}>{errorMessage}</div>
-      )}
-      <button onClick={onUnitToggle}>Ver em {unit === "metric" ? "°F" : "°C"}</button>
+      {errorMessage && <p className={`${styles.message} ${showError ? styles.show : styles.hide}`}>{errorMessage}</p>}
     </div>
   );
 };
