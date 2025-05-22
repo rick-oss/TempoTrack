@@ -6,7 +6,7 @@ import styles from "./SearchBar.module.css";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
 
-const SearchBar = ({ onLocationSelect, onUnitToggle, unit }) => {
+const SearchBar = ({ onLocationSelect, customClass }) => {
   const [searchPlace, setSearchPlace] = useState("");
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
