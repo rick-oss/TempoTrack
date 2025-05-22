@@ -11,7 +11,11 @@ import ForecastCard from "../layout/ForecastCard";
 import FiveDaysForecast from "../layout/FiveDaysForecast";
 import DataCard from "../layout/DataCard";
 import Loading from "../layout/Loading";
+import Button from "../layout/Button";
 
+import PermissionDeniedPage from "./PermissionDeniedPage";
+
+import styles from "./WeatherPage.module.css";
 import useGeolocation from "../useGeolocation";
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
@@ -41,7 +45,7 @@ function WeatherPage() {
   const [fiveDaysLoading, setFiveDaysLoading] = useState(false);
   const [units, setUnits] = useState("metric");
 
-  const { geolocation, error } = useGeolocation();
+  const { geolocation, permissionDenied } = useGeolocation();
 
   useEffect(() => {
     if (geolocation.latitude && geolocation.longitude) {
