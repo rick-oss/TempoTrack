@@ -1,0 +1,8 @@
+.tool_bar {
+  display: flex;
+  margin: 0 20px 20px;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
