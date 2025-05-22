@@ -38,20 +38,21 @@
   z-index: 999;
 }
 
-.search_wrapper ul li {
+.suggestions li {
   padding: 12px 0 12px 10px;
   cursor: pointer;
   background-color: #1f242d;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.search_wrapper ul li:hover {
+.suggestions li:hover {
   background-color: #888;
 }
 
 .message {
   position: absolute;
   left: 310px;
+  top: 0;
   width: 500px;
   letter-spacing: 2px;
   text-align: center;
@@ -73,15 +74,39 @@
   opacity: 0;
 }
 
-.search_wrapper button {
-  padding: 15px 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  backdrop-filter: blur(2px);
-  cursor: pointer;
+/*Custom Class */
+.denied-permission {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
 }
 
-.search_wrapper button:hover {
-  background: none;
+.denied-permission .search_input {
+  width: 80%;
+  font-size: 18px;
+  padding: 35px 35px;
+}
+
+.denied-permission .search_input::placeholder {
+  font-size: 18px;
+}
+
+.denied-permission .search_icon {
+  position: relative;
+  top: 65px;
+  left: 37%;
+  font-size: 19px;
+}
+
+.denied-permission .suggestions {
+  width: 80%;
+}
+
+.denied-permission .message {
+  position: relative;
+  width: 80%;
+  left: 0;
 }
