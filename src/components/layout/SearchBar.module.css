@@ -1,13 +1,8 @@
-.search_wrapper {
-  display: flex;
-  margin: 0 20px 20px;
+.wrapper {
   position: relative;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
 }
 
-.search_wrapper input {
+.search_input {
   width: 300px;
   padding: 15px 15px;
   border-radius: 10px;
@@ -15,26 +10,23 @@
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   outline: none;
-  margin-right: 30px;
 }
 
-.search_wrapper input::placeholder {
+.search_input::placeholder {
   color: #fff;
 }
 
-.search_wrapper i {
+.search_icon {
   background: none;
   border: none;
   padding: 0;
   position: absolute;
   left: 270px;
+  bottom: 21%;
+  pointer-events: none;
 }
 
-i .icon {
-  margin-top: 5px;
-}
-
-.search_wrapper ul {
+.suggestions {
   list-style-type: none;
   position: absolute;
   border: 1px solid rgba(255, 255, 255, 0.3);
