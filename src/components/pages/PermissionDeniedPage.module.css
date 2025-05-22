@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+  background-image: url(/images/clear-sky.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper h1 {
+  font-size: 3em;
+  margin-top: 75px;
+}
+
+.permission_msg {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1em;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  background-color: rgba(238, 25, 25, 0.4);
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 2s ease-in-out;
+}
+
+.permission_msg p {
+  text-indent: 20px;
+}
+
+.permission_msg button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+button .icon_button {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
