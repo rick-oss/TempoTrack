@@ -208,14 +208,6 @@ function WeatherPage() {
     }
   }, [fiveDaysForecast, todayStr]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!todayForecast) {
-    return <Loading size={18} />;
-  }
-
   // Obtém dados da cidade digitada na barra de pesquisa
   const getCoordinates = (city_name, latitude, longitude) => {
     setCity(city_name);
