@@ -312,136 +312,129 @@ function WeatherPage() {
 
   return (
     <>
-      {permissionDenied && !todayForecast ? (
+      {!appInitialized ? (
+        <FullScreenLoading />
+      ) : permissionDenied && !todayForecast ? (
         <PermissionDeniedPage onLocationSelect={getCoordinates} />
       ) : (
-        renderWithLoading(
-          !permissionStatusChecked,
-          <>
-            <div
-              style={{
-                backgroundImage: `url(${bgImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                minHeight: "100%",
-                paddingTop: "40px",
-              }}
-            >
-              <div className={styles.tool_bar}>
-                <SearchBar onLocationSelect={getCoordinates} />
-                <Button onUnitToggle={toggleUnits} unit={units} />
-              </div>
-              <Container>
-                {todayForecast && (
-                  <ForecastCard
-                    title={
-                      <Title
-                        line1={`${removeAfterSecondComma(city)}, ${todayForecast.sys.country}`}
-                        line2={`${date}, ${time}`}
-                      />
-                    }
-                    icon={todayForecast.weather[0].icon}
-                    description={capitalize(todayForecast.weather[0].description)}
-                    temp={renderWithLoading(loading, Math.round(todayForecast.main.temp), 64)}
-                    max_temp={renderWithLoading(loading, Math.ceil(todayForecast.main.temp_max), 18)}
-                    min_temp={renderWithLoading(loading, Math.floor(todayForecast.main.temp_min), 18)}
-                    feels_like={renderWithLoading(loading, Math.round(todayForecast.main.feels_like), 18)}
-                    unit={units}
-                    dataCards={[
-                      <DataCard
-                        dataName="Umidade"
-                        dataIcon={<FaTint />}
-                        dataValue={renderWithLoading(loading, `${Math.floor(todayForecast.main.humidity)}%`, 18)}
-                        iconColor="#00ffff"
-                      />,
-                      <DataCard
-                        dataName="Vento"
-                        dataIcon={<FaWind />}
-                        dataValue={renderWithLoading(loading, convertWindSpeed(todayForecast.wind.speed, units), 18)}
-                        iconColor="#4dd0e1"
-                      />,
-                      <DataCard
-                        dataName="Pressão"
-                        dataIcon={<FaTachometerAlt />}
-                        dataValue={renderWithLoading(loading, `${todayForecast.main.pressure} mb`, 18)}
-                        iconColor="#9370db"
-                      />,
-                      <DataCard
-                        dataName="Visibilidade"
-                        dataIcon={<FaEye />}
-                        dataValue={renderWithLoading(loading, convertVisibility(todayForecast.visibility), 18)}
-                        iconColor="#87ceeb"
-                      />,
-                      <DataCard
-                        dataName="Pôr do Sol"
-                        dataIcon={<FaSun />}
-                        dataValue={renderWithLoading(loading, sunsetTime, 18)}
-                        iconColor="#ffa500"
-                      />,
-                      <DataCard
-                        dataName="P. de Orvalho"
-                        dataIcon={<MdCloudQueue />}
-                        dataValue={renderWithLoading(
-                          loading,
-                          calculateDewPoint(todayForecast.main.temp, todayForecast.main.humidity),
-                          18
-                        )}
-                        iconColor="#f1f1f1"
-                      />,
-                    ]}
-                  />
-                )}
-
-                {tomorrowForecast && (
-                  <ForecastCard
-                    customClass="custom_card"
-                    title={<Title line1="Amanhã" line2={tomorrowDate} />}
-                    icon={tomorrowForecast.icon}
-                    temp={renderWithLoading(fiveDaysLoading, Math.round(tomorrowForecast.temperature), 64)}
-                    max_temp={renderWithLoading(fiveDaysLoading, Math.ceil(tomorrowForecast.maxTemperature), 18)}
-                    min_temp={renderWithLoading(fiveDaysLoading, Math.floor(tomorrowForecast.minTemperature), 18)}
-                    description={capitalize(tomorrowForecast.description)}
-                    feels_like={renderWithLoading(fiveDaysLoading, Math.round(tomorrowForecast.feels_like), 18)}
-                    unit={units}
-                    dataCards={[
-                      <DataCard
-                        dataName="Umidade"
-                        dataIcon={<FaTint />}
-                        dataValue={renderWithLoading(fiveDaysLoading, `${Math.floor(tomorrowForecast.humidity)}%`, 18)}
-                        iconColor="#00ffff"
-                      />,
-                      <DataCard
-                        dataName="Vento"
-                        dataIcon={<FaWind />}
-                        dataValue={renderWithLoading(
-                          fiveDaysLoading,
-                          convertWindSpeed(tomorrowForecast.wind_speed, units),
-                          18
-                        )}
-                        iconColor="#4dd0e1"
-                      />,
-                      <DataCard
-                        dataName="Visibilidade"
-                        dataIcon={<FaEye />}
-                        dataValue={renderWithLoading(
-                          fiveDaysLoading,
-                          convertVisibility(tomorrowForecast.visibility),
-                          18
-                        )}
-                        iconColor="#87ceeb"
-                      />,
-                    ]}
-                  />
-                )}
-              </Container>
-              <Container customClass="custom_class">
-                <FiveDaysForecast cards={cardsData} loading={fiveDaysLoading} safeRender={renderWithLoading} />
-              </Container>
+        <>
+          <div
+            style={{
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              minHeight: "100%",
+              paddingTop: "40px",
+            }}
+          >
+            <div className={styles.tool_bar}>
+              <SearchBar onLocationSelect={getCoordinates} />
+              <Button onUnitToggle={toggleUnits} unit={units} />
             </div>
-          </>,
-          64,
-          "full_screen"
-        )
+            <Container>
+              {todayForecast && (
+                <ForecastCard
+                  title={
+                    <Title
+                      line1={`${removeAfterSecondComma(city)}, ${todayForecast.sys.country}`}
+                      line2={`${date}, ${time}`}
+                    />
+                  }
+                  icon={todayForecast.weather[0].icon}
+                  description={capitalize(todayForecast.weather[0].description)}
+                  temp={renderWithLoading(loading, Math.round(todayForecast.main.temp), 64)}
+                  max_temp={renderWithLoading(loading, Math.ceil(todayForecast.main.temp_max), 18)}
+                  min_temp={renderWithLoading(loading, Math.floor(todayForecast.main.temp_min), 18)}
+                  feels_like={renderWithLoading(loading, Math.round(todayForecast.main.feels_like), 18)}
+                  unit={units}
+                  dataCards={[
+                    <DataCard
+                      dataName="Umidade"
+                      dataIcon={<FaTint />}
+                      dataValue={renderWithLoading(loading, `${Math.floor(todayForecast.main.humidity)}%`, 18)}
+                      iconColor="#00ffff"
+                    />,
+                    <DataCard
+                      dataName="Vento"
+                      dataIcon={<FaWind />}
+                      dataValue={renderWithLoading(loading, convertWindSpeed(todayForecast.wind.speed, units), 18)}
+                      iconColor="#4dd0e1"
+                    />,
+                    <DataCard
+                      dataName="Pressão"
+                      dataIcon={<FaTachometerAlt />}
+                      dataValue={renderWithLoading(loading, `${todayForecast.main.pressure} mb`, 18)}
+                      iconColor="#9370db"
+                    />,
+                    <DataCard
+                      dataName="Visibilidade"
+                      dataIcon={<FaEye />}
+                      dataValue={renderWithLoading(loading, convertVisibility(todayForecast.visibility), 18)}
+                      iconColor="#87ceeb"
+                    />,
+                    <DataCard
+                      dataName="Pôr do Sol"
+                      dataIcon={<FaSun />}
+                      dataValue={renderWithLoading(loading, sunsetTime, 18)}
+                      iconColor="#ffa500"
+                    />,
+                    <DataCard
+                      dataName="P. de Orvalho"
+                      dataIcon={<MdCloudQueue />}
+                      dataValue={renderWithLoading(
+                        loading,
+                        calculateDewPoint(todayForecast.main.temp, todayForecast.main.humidity),
+                        18
+                      )}
+                      iconColor="#f1f1f1"
+                    />,
+                  ]}
+                />
+              )}
+
+              {tomorrowForecast && (
+                <ForecastCard
+                  customClass="custom_card"
+                  title={<Title line1="Amanhã" line2={tomorrowDate} />}
+                  icon={tomorrowForecast.icon}
+                  temp={renderWithLoading(fiveDaysLoading, Math.round(tomorrowForecast.temperature), 64)}
+                  max_temp={renderWithLoading(fiveDaysLoading, Math.ceil(tomorrowForecast.maxTemperature), 18)}
+                  min_temp={renderWithLoading(fiveDaysLoading, Math.floor(tomorrowForecast.minTemperature), 18)}
+                  description={capitalize(tomorrowForecast.description)}
+                  feels_like={renderWithLoading(fiveDaysLoading, Math.round(tomorrowForecast.feels_like), 18)}
+                  unit={units}
+                  dataCards={[
+                    <DataCard
+                      dataName="Umidade"
+                      dataIcon={<FaTint />}
+                      dataValue={renderWithLoading(fiveDaysLoading, `${Math.floor(tomorrowForecast.humidity)}%`, 18)}
+                      iconColor="#00ffff"
+                    />,
+                    <DataCard
+                      dataName="Vento"
+                      dataIcon={<FaWind />}
+                      dataValue={renderWithLoading(
+                        fiveDaysLoading,
+                        convertWindSpeed(tomorrowForecast.wind_speed, units),
+                        18
+                      )}
+                      iconColor="#4dd0e1"
+                    />,
+                    <DataCard
+                      dataName="Visibilidade"
+                      dataIcon={<FaEye />}
+                      dataValue={renderWithLoading(fiveDaysLoading, convertVisibility(tomorrowForecast.visibility), 18)}
+                      iconColor="#87ceeb"
+                    />,
+                  ]}
+                />
+              )}
+            </Container>
+            <Container customClass="custom_class">
+              <FiveDaysForecast cards={cardsData} loading={fiveDaysLoading} safeRender={renderWithLoading} />
+            </Container>
+          </div>
+        </>
       )}
     </>
   );
