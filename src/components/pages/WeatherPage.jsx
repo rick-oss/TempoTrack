@@ -42,9 +42,11 @@ function WeatherPage() {
   });
   const [fiveDaysForecast, setFiveDaysForecast] = useState(null);
   const [groupedForecast, setGroupedForecast] = useState({});
+  const [units, setUnits] = useState("metric");
+
   const [loading, setLoading] = useState(false);
   const [fiveDaysLoading, setFiveDaysLoading] = useState(false);
-  const [units, setUnits] = useState("metric");
+  const [appInitialized, setAppInitialized] = useState(false);
 
   const { geolocation, permissionDenied, permissionStatusChecked } = useGeolocation();
 
@@ -53,6 +55,12 @@ function WeatherPage() {
       setLocation(geolocation);
     }
   }, [geolocation]);
+
+  useEffect(() => {
+    if (permissionStatusChecked && (todayForecast || permissionDenied)) {
+      setAppInitialized(true);
+    }
+  }, [permissionStatusChecked, todayForecast, permissionDenied]);
 
   useEffect(() => {
     async function getForecast() {
