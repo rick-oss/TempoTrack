@@ -14,6 +14,7 @@ import Loading from "../layout/Loading";
 import Button from "../layout/Button";
 
 import PermissionDeniedPage from "./PermissionDeniedPage";
+import FullScreenLoading from "./FullScreenLoading";
 
 import styles from "./WeatherPage.module.css";
 import useGeolocation from "../useGeolocation";
