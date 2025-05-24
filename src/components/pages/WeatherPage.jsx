@@ -284,8 +284,8 @@ function WeatherPage() {
     return parts.length > 2 ? parts.slice(0, 2).join(",") : str;
   };
 
-  const renderWithLoading = (loadingState, executable, loadingSize, customCLass) => {
-    return !loadingState ? executable : <Loading size={loadingSize} customClass={customCLass} />;
+  const renderWithLoading = (loadingState, executable, loadingSize) => {
+    return !loadingState ? executable : <Loading size={loadingSize} />;
   };
 
   const getBackgroundByWeather = (weatherMain) => {
