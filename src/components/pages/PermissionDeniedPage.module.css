@@ -7,6 +7,7 @@
   background-image: url(/images/clear-sky.jpg);
   background-size: cover;
   background-position: center;
+  color: #fff;
 }
 
 .wrapper h1 {
@@ -41,6 +42,7 @@
 button .icon_button {
   font-size: 1.1em;
   vertical-align: middle;
+  color: #fff;
 }
 
 @keyframes fadeIn {
