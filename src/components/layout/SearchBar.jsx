@@ -48,6 +48,7 @@ const SearchBar = ({ onLocationSelect, customClass }) => {
       <input
         className={styles.search_input}
         type="text"
+        name="search"
         value={searchPlace}
         placeholder="Pesquisar por local"
         onChange={(e) => setSearchPlace(e.target.value)}
