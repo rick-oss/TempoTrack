@@ -78,7 +78,6 @@ function WeatherPage() {
 
           const data = await response.json();
           setTodayForecast(data);
-          console.log("Weather forecast:", data);
         } catch (err) {
           console.log("Error fetching weather forecast:", err);
         } finally {
@@ -107,7 +106,6 @@ function WeatherPage() {
 
           const data = await response.json();
           setFiveDaysForecast(data);
-          console.log("Five-days forecast:", data);
         } catch (err) {
           console.log("Error fetching five-days forecast:", err);
         } finally {
