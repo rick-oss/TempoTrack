@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(/images/clear-sky.jpg);
   background-size: cover;
   background-position: center;
