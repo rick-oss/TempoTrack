@@ -13,7 +13,7 @@ function LocationDeniedPage({ onLocationSelect }) {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.permission_wrapper}>
       <h1>TempoTrack</h1>
       {isVisible && (
         <div className={styles.permission_msg}>

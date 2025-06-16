@@ -44,7 +44,7 @@ const SearchBar = ({ onLocationSelect, customClass }) => {
   };
 
   return (
-    <div className={`${styles.wrapper} ${styles[customClass]}`}>
+    <div className={`${styles.search_wrapper} ${styles[customClass]}`}>
       <input
         className={styles.search_input}
         type="text"
