@@ -11,3 +11,10 @@
 .toggle_button:hover {
   background: none;
 }
+
+@media (max-width: 450px) {
+  .toggle_button {
+    padding: 16px 15px;
+    font-size: 11px;
+  }
+}

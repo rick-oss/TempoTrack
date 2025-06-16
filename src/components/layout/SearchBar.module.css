@@ -1,4 +1,4 @@
-.wrapper {
+.search_wrapper {
   position: relative;
 }
 
@@ -110,4 +110,63 @@
   position: relative;
   width: 80%;
   left: 0;
+}
+
+@media (max-width: 1000px) {
+  .denied-permission .search_icon {
+    left: 35%;
+  }
+}
+
+@media (max-width: 600px) {
+  .denied-permission .search_input::placeholder {
+    font-size: 17px;
+  }
+
+  .denied-permission .search_icon {
+    left: 33%;
+  }
+}
+
+@media (max-width: 450px) {
+  .search_wrapper .search_input {
+    width: 220px;
+  }
+
+  .search_wrapper .search_input::placeholder {
+    font-size: 11px;
+  }
+
+  .search_wrapper .search_icon {
+    left: 190px;
+    bottom: 23%;
+    font-size: 14px;
+  }
+
+  /*Custom Class*/
+  .denied-permission .search_input {
+    width: 90%;
+    padding: 20px 20px;
+    font-size: 16px;
+  }
+
+  .denied-permission .search_input::placeholder {
+    font-size: 15px;
+  }
+
+  .denied-permission .search_icon {
+    top: 48px;
+    left: 38%;
+    font-size: 17px;
+  }
+
+  .denied-permission .suggestions {
+    width: 90%;
+  }
+
+  .denied-permission .message {
+    width: 90%;
+    margin-top: 5px;
+    font-size: 12px;
+  }
 }

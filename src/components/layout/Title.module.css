@@ -8,3 +8,25 @@
 .title_wrapper h3 {
   font-size: 1.2em;
 }
+
+@media (max-width: 600px) {
+  .title_wrapper h3 {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 450px) {
+  .title_wrapper {
+    padding: 15px 15px;
+  }
+
+  .title_wrapper h3 {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 375px) {
+  .title_wrapper h3 {
+    font-size: 11px;
+  }
+}

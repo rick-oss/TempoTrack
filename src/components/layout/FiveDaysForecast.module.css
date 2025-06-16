@@ -5,10 +5,26 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   color: #fff;
-  padding: 0 25px;
 }
 
 .card_wrapper h1 {
   text-align: center;
   padding: 15px 0;
+}
+
+.card_content {
+  padding: 0 25px;
+}
+
+@media (max-width: 915px) {
+  .card_wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card_content {
+    display: flex;
+    padding: 0 0;
+  }
 }

@@ -1,8 +1,26 @@
 .tool_bar {
   display: flex;
-  margin: 0 20px 20px;
+  margin: 0 35px 20px;
   position: relative;
   align-items: center;
   justify-content: space-between;
   color: #fff;
+}
+
+@media (max-width: 1315px) {
+  .tool_bar {
+    margin: 0 20px 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .tool_bar {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .tool_bar {
+    margin: 0 2px;
+  }
 }

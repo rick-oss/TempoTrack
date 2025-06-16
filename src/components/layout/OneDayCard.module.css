@@ -25,3 +25,50 @@
 .card_wrapper img {
   width: 70px;
 }
+
+@media (max-width: 480px) {
+  .card_wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 4.6px;
+    border-top: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .card_wrapper:first-child {
+    border-left: none;
+  }
+}
+
+@media (max-width: 428px) {
+  .card_wrapper {
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: 390px) {
+  .card_wrapper {
+    font-size: 12px;
+  }
+
+  .card_wrapper h3 {
+    text-align: center;
+  }
+
+  .card_wrapper img {
+    width: 50px;
+  }
+}
+
+@media (max-width: 380px) {
+  .card_wrapper .temps {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .card_wrapper .wind {
+    width: 67px;
+  }
+}
