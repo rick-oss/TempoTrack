@@ -4,7 +4,7 @@
   align-items: center;
   gap: 10px;
   min-height: 100vh;
-  background-image: url(src/assets/images/clear-sky.jpg);
+  background-image: url(/clear-sky.jpg);
   background-size: cover;
   background-position: center;
   color: #fff;
