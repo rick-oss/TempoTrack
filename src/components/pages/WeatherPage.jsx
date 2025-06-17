@@ -17,7 +17,8 @@ import PermissionDeniedPage from "./PermissionDeniedPage";
 import FullScreenLoading from "./FullScreenLoading";
 
 import styles from "./WeatherPage.module.css";
-import useGeolocation from "../useGeolocation";
+import useGeolocation from "../../utils/useGeolocation";
+import getBackgroundByWeather from "../../utils/weatherBackground";
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
@@ -286,26 +287,7 @@ function WeatherPage() {
     return !loadingState ? executable : <Loading size={loadingSize} />;
   };
 
-  const getBackgroundByWeather = (weatherMain) => {
-    switch (weatherMain) {
-      case "Clear":
-        return "/images/clear-sky.jpg";
-      case "Clouds":
-      case "Mist":
-      case "Haze":
-      case "Fog":
-        return "/images/clouds.jpg";
-      case "Rain":
-      case "Drizzle":
-        return "/images/rain.jpg";
-      case "Thunderstorm":
-        return "/images/thunderstorm.jpg";
-      case "Snow":
-        return "/images/snow.jpg";
-      default:
-        return "/images/clear-sky.jpg";
-    }
-  };
+  // Obtém a imagem de fundo com base no clima atual
   const bgImage = getBackgroundByWeather(todayForecast?.weather[0].main);
 
   return (
