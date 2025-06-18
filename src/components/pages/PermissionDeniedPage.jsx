@@ -17,7 +17,7 @@ function LocationDeniedPage({ onLocationSelect }) {
       <h1>TempoTrack</h1>
       {isVisible && (
         <div className={styles.permission_msg}>
-          <p>Não foi possível acessar sua localização. Mas relaxa é só digitar sua cidade aí embaixo</p>
+          <p>Não foi possível acessar sua localização. Mas relaxa, é só digitar sua cidade aí embaixo</p>
           <button onClick={handleClose}>
             <FaX className={styles.icon_button} />
           </button>
